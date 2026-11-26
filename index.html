@@ -216,7 +216,7 @@
     <div id="app-shell" class="hidden min-h-screen w-full max-w-full overflow-x-hidden flex-col md:flex-row">
         
         <!-- Sidebar Desktop -->
-        <aside class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-white border-r border-slate-200 z-30">
+        <aside class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-white border-r border-slate-200 z-40">
             <div class="flex items-center gap-3 h-16 px-6 border-b border-slate-100">
                 <div class="w-9 h-9 rounded-xl shadow-sm overflow-hidden shrink-0">
                     <svg viewBox="0 0 128 128" class="w-full h-full">
@@ -308,16 +308,10 @@
                         <i data-lucide="chevron-left" class="w-4 h-4"></i>
                     </button>
                     <div class="relative min-w-0">
-                        <input type="month" id="global-month-picker" onchange="handleGlobalMonthChange(this.value)" class="w-[138px] sm:w-auto max-w-full min-w-0 bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium rounded-xl px-2 sm:px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
+                        <input type="month" id="global-month-picker" onchange="handleGlobalMonthChange(this.value)" class="w-[164px] sm:w-auto max-w-full min-w-0 bg-white border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium rounded-xl px-2.5 sm:px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 cursor-pointer">
                     </div>
                     <button onclick="changeMonth(1)" class="p-1.5 sm:p-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 transition-colors shrink-0" title="Próximo mês">
                         <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                    </button>
-                    
-                    <!-- Botão Rápido Mobile -->
-                    <button onclick="openTransactionModal()" class="md:hidden ml-0.5 px-2.5 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold shadow-sm hover:bg-indigo-700 flex items-center gap-1 shrink-0" title="Novo lançamento">
-                        <i data-lucide="plus" class="w-4 h-4"></i>
-                        <span>Novo</span>
                     </button>
                 </div>
 
@@ -482,12 +476,12 @@
                             <h2 class="text-xl font-bold text-slate-900 truncate">Lançamentos</h2>
                             <p class="text-sm text-slate-500">Gerencie suas entradas, saídas, parcelas e contas fixas</p>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button type="button" onclick="toggleMobileFilters()" class="sm:hidden inline-flex items-center justify-center gap-1.5 bg-white border border-slate-200 text-slate-700 font-medium py-2.5 px-3.5 rounded-xl text-xs shrink-0">
+                        <div class="flex sm:hidden items-center gap-2">
+                            <button type="button" onclick="toggleMobileFilters()" class="inline-flex items-center justify-center gap-1.5 bg-white border border-slate-200 text-slate-700 font-medium py-2.5 px-3.5 rounded-xl text-xs shrink-0">
                                 <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
                                 Filtros
                             </button>
-                            <button onclick="openTransactionModal()" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-xl shadow-sm transition-all text-sm shrink-0">
+                            <button onclick="openTransactionModal()" class="flex-1 inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-4 rounded-xl shadow-sm transition-all text-sm">
                                 <i data-lucide="plus" class="w-4 h-4"></i>
                                 Novo Lançamento
                             </button>
@@ -540,10 +534,6 @@
                             <h2 class="text-xl font-bold text-slate-900 truncate">Contas a Pagar</h2>
                             <p class="text-sm text-slate-500">Acompanhe suas despesas pendentes, parcelas e contas fixas a vencer</p>
                         </div>
-                        <button onclick="openNewPayableModal()" class="inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white font-medium py-2.5 px-5 rounded-xl shadow-sm transition-all text-sm shrink-0">
-                            <i data-lucide="plus" class="w-4 h-4"></i>
-                            Nova Conta a Pagar
-                        </button>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full min-w-0">
@@ -599,10 +589,6 @@
                             <h2 class="text-xl font-bold text-slate-900">Metas de Economia</h2>
                             <p class="text-sm text-slate-500">Acompanhe seus objetivos financeiros e registre seus depósitos</p>
                         </div>
-                        <button onclick="openGoalModal()" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 px-5 rounded-xl shadow-sm transition-all text-sm shrink-0">
-                            <i data-lucide="plus" class="w-4 h-4"></i>
-                            Nova Meta
-                        </button>
                     </div>
                     <div id="goals-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 w-full min-w-0"></div>
                 </section>
@@ -706,7 +692,7 @@
     </nav>
 
     <!-- ==================== MODAL: NOVO / EDITAR LANÇAMENTO ==================== -->
-    <div id="transaction-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs z-50 hidden flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto overflow-x-hidden">
+    <div id="transaction-modal" class="fixed inset-0 md:left-64 bg-slate-900/50 backdrop-blur-xs z-30 hidden flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto overflow-x-hidden">
         <div class="bg-white rounded-t-3xl sm:rounded-2xl max-w-lg w-full max-w-full p-5 sm:p-6 shadow-xl border border-slate-100 sm:my-8 max-h-[92vh] overflow-y-auto overflow-x-hidden">
             <div class="flex items-center justify-between mb-5 min-w-0">
                 <h3 id="tx-modal-title" class="text-lg font-bold text-slate-900 truncate">Novo Lançamento</h3>
@@ -1224,6 +1210,8 @@
         let appState = getInitialEmptyData();
         let expensesChartInstance = null;
         let payableScope = 'month';
+        let currentActiveTab = 'dashboard';
+        let isTxDraftSuspended = false;
 
         function toggleMobileFilters() {
             const panel = document.getElementById('transactions-filters-panel');
@@ -1322,6 +1310,7 @@
         };
 
         function switchTab(tabName) {
+            currentActiveTab = tabName;
             ['dashboard', 'transactions', 'payable', 'budgets', 'goals', 'categories'].forEach(t => {
                 const section = document.getElementById(`view-${t}`);
                 if (section) {
@@ -1336,6 +1325,22 @@
             const pageTitle = document.getElementById('page-title');
             if (pageTitle) {
                 pageTitle.textContent = PAGE_TITLES[tabName] || 'Meu Controle';
+            }
+
+            const txModal = document.getElementById('transaction-modal');
+            const isDesktop = window.innerWidth >= 768;
+            if (txModal && isDesktop) {
+                const isModalOpen = !txModal.classList.contains('hidden');
+                if (tabName === 'dashboard' && isTxDraftSuspended) {
+                    const currentType = document.getElementById('tx-type').value;
+                    const currentCat = document.getElementById('tx-category').value;
+                    populateTxCategorySelect(currentType, currentCat);
+                    txModal.classList.remove('hidden');
+                    isTxDraftSuspended = false;
+                } else if (tabName !== 'dashboard' && isModalOpen) {
+                    txModal.classList.add('hidden');
+                    isTxDraftSuspended = true;
+                }
             }
 
             refreshUI();
@@ -1825,10 +1830,16 @@
         }
 
         function openTransactionModal(txId = null, forceUnpaidExpense = false) {
+            isTxDraftSuspended = false;
             populateInstallmentsSelect();
             const modal = document.getElementById('transaction-modal');
             const title = document.getElementById('tx-modal-title');
             const repeatOptions = document.getElementById('tx-repeat-options');
+            const isDesktop = window.innerWidth >= 768;
+
+            if (isDesktop && currentActiveTab !== 'dashboard') {
+                switchTab('dashboard');
+            }
 
             if (txId) {
                 const tx = appState.transactions.find(t => t.id === txId);
@@ -1869,6 +1880,7 @@
         }
 
         function closeTransactionModal() {
+            isTxDraftSuspended = false;
             document.getElementById('transaction-modal').classList.add('hidden');
         }
 
